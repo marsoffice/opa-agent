@@ -23,39 +23,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: setup net 6
-        uses: actions/setup-dotnet@v1.8.2
-        with:
-          dotnet-version: "6.0.x"
-          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-        env:
-          NUGET_AUTH_TOKEN: "%NUGET_AUTH_TOKEN%"
-
-      - name: cache nuget
-        uses: actions/cache@v2
-        id: cache-nuget
-        env:
-          cache-name: cache-nuget
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ github.workflow }}-build-${{ secrets.CACHE_VERSION }}-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-${{ github.workflow }}-build-${{ secrets.CACHE_VERSION }}-
-
-      - name: dotnet publish
-        run: |
-          dotnet publish -c Release -o ./dist ./MarsOffice.Opa
-
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - run: rm -rf GitVersion.yml README.md .gitignore .vscode .github
 
       - name: upload artifact
         uses: actions/upload-artifact@v2.2.4
         if: ${{ success() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master') }}
         with:
           name: dist
-          path: ./dist
+          path: ./
 
   deploy_stg_westeurope:
     if: ${{ success() && github.event_name != 'pull_request' && github.ref == 'refs/heads/develop' }}
@@ -68,7 +43,7 @@ jobs:
         uses: actions/download-artifact@v2.0.10
         with:
           name: "dist"
-          path: ./dist
+          path: ./
 
       - name: az login
         uses: Azure/login@v1
@@ -84,7 +59,7 @@ jobs:
       - name: deploy
         uses: Azure/functions-action@v1.3.2
         with:
-          package: ./dist
+          package: ./
           app-name: func-${{ github.workflow }}-westeurope-stg
 
   # deploy_stg_westus2:
