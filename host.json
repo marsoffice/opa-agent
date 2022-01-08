@@ -1,0 +1,23 @@
+{
+    "version": "2.0",
+    "customHandler": {
+        "enableForwardingHttpRequest": true,
+        "description": {
+            "defaultExecutablePath": "%executablePath%",
+            "workingDirectory": ".",
+            "arguments": [
+                "run",
+                "--server",
+                "--log-level",
+                "info",
+                "--addr",
+                ":%FUNCTIONS_CUSTOMHANDLER_PORT%"
+            ]
+        }
+    },
+    "extensions": {
+        "http": {
+            "routePrefix": ""
+        }
+    }
+}

@@ -2,9 +2,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach to .NET Functions",
-      "type": "coreclr",
+      "name": "Attach to Functions",
       "request": "attach",
+      "type": "coreclr",
       "processId": "${command:azureFunctions.pickProcess}"
     }
   ]
