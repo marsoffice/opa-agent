@@ -5,6 +5,7 @@
             "direction": "in",
             "name": "req",
             "route": "{*restOfPath}",
+            "authLevel": "anonymous",
             "methods": [
                 "get",
                 "post",
