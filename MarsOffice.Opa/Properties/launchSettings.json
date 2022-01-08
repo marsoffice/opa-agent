@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MarsOffice.Opa": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 8001"
+    }
+  }
+}
