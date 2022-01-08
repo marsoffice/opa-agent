@@ -1,7 +1,7 @@
 discovery:
   name: discovery
   resource: "${opadiscoveryresource}"
-  service: "main"
+  service: "styra"
 labels:
   system-id: "${opasystemid}"
   system-type: custom
@@ -9,10 +9,10 @@ services:
   - credentials:
       bearer:
         token: "${opaservicetoken}"
-    name: "main"
+    name: "styra"
     url: "${opaserviceurl}"
   - credentials:
       bearer:
         token: "${opaservicetoken}"
-    name: "bundles"
+    name: "styra-bundles"
     url: "${opabundlesserviceurl}"
