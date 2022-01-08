@@ -1,0 +1,18 @@
+discovery:
+  name: discovery
+  resource: "${OPA_DISCOVERY_RESOURCE}"
+  service: "main"
+labels:
+  system-id: "${OPA_SYSTEM_ID}"
+  system-type: custom
+services:
+  - credentials:
+      bearer:
+        token: "${OPA_SERVICE_TOKEN}"
+    name: "main"
+    url: "${OPA_SERVICE_URL}"
+  - credentials:
+      bearer:
+        token: "${OPA_SERVICE_TOKEN}"
+    name: "bundles"
+    url: "${OPA_BUNDLES_SERVICE_URL}"

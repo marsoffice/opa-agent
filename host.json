@@ -7,6 +7,8 @@
             "workingDirectory": ".",
             "arguments": [
                 "run",
+                "--config-file",
+                "opa/opa-conf.yaml",
                 "--server",
                 "--log-level",
                 "info",
