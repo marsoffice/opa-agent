@@ -1,4 +1,4 @@
-name: marsoffice-opa
+name: opa-agent
 on:
   push:
     branches: [develop, master]
