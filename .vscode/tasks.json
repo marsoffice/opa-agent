@@ -6,7 +6,7 @@
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "command": "host start --port 8001 --verbose",
+      "command": "host start --port 8001",
       "isBackground": true,
       "problemMatcher": "$func-watch"
     }
